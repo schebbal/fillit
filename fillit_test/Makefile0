@@ -1,0 +1,151 @@
+# **************************************************************************** #
+#                                                           LE - /             #
+#                                                               /              #
+#    Makefile                                         .::    .:/ .      .::    #
+#                                                  +:+:+   +:    +:  +:+:+     #
+#    By: schebbal <marvin@le-101.fr>                +:+   +:    +:    +:+      #
+#                                                  #+#   #+    #+    #+#       #
+#    Created: 2018/11/14 10:53:12 by schebbal     #+#   ##    ##    #+#        #
+#    Updated: 2018/12/01 18:17:46 by schebbal    ###    #+. /#+    ###.fr      #
+#                                                          /                   #
+#                                                         /                    #
+# **************************************************************************** #
+NAME= libunit.a
+
+SRC  =  ft_launcher.c
+
+SRCO =  $(SRC:.c=.o)
+
+CFLAGS =  -Werror -Wextra -Wall -c
+
+CC = gcc
+
+all : $(NAME)
+
+$(NAME): $(SRCO)
+			@ar -rc $(NAME) $(SRCO)
+
+%.o : %.c
+			@echo  "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $<
+					@gcc $(FLAGS) -o $@ -c $^
+clean :
+			@rm -rf $(SRCO)
+					@echo "\033[0;32m [OK] \033[0m       \033[0;33m File.o deleted:\033[0m" $<
+					 
+fclean : clean
+			@rm -rf $(NAME)
+					@echo  "\033[0;32m [OK] \033[0m       \033[0;33m framework deleted:\033[0m" $<
+
+re : fclean all
+	.PHONY: clean re all fclean
+
+
+EXEC = fillit
+
+PATH_SRC = ./
+Header = ./libft.h
+FLAGS = -Wall -Werror -Wextra
+
+SRCF = fillit.c
+
+NAME = libft.a
+
+SRC = $(addprefix $(PATH_SRC), $(SRCF))
+
+OBJ = $(SRC:.c=.o)
+
+all: $(EXE) $(NAME)
+
+$(NAME): $(OBJ)
+	ar ruc $(NAME) $?
+	ranlib $(NAME)
+
+%.o:%.c
+	gcc -c $(FLAGS) -I $(HEADER) $*.c
+
+clean:
+	/bin/rm -f $(OBJ)
+
+fclean: clean
+	/bin/rm -f $(NAME) $(EXEC)
+
+re: fclean all
+
+
+SRC_PATH = ./srcs/
+
+SRC_NAME = can_place.c \
+		   check_validity.c \
+		   erase_piece.c \
+		   extend_board.c \
+		   fillit.c \
+		   ft_read_file.c \
+		   ft_strnew_with_dot.c \
+		   ft_strnout.c \
+		   get_board_size.c \
+		   list_len.c \
+		   new_tetrimino.c \
+		   pattern_to_left_corner.c \
+		   print_board.c \
+		   push_tetrimino_back.c \
+		   put_tetri.c \
+		   solve_me.c \
+		   turn_into_alphachar.c \
+		   free_board.c \
+		   print_list.c
+
+OBJ_PATH = ./obj/
+
+INC_PATH = ./incl/
+
+NAME = fillit
+
+CC = gcc
+CFLAGS = -fsanitize=address -Wall -Wextra -Werror
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
+INC = $(addprefix -I,$(INC_PATH))
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) -o $(NAME) $(OBJ) -L ./libft -lft
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+	$(CC) $(CFLAGS) $(INC) -o $@ -c $<
+
+clean:
+	rm -fv $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || echo "" > /dev/null
+
+fclean: clean
+	rm -fv $(NAME)
+
+re:	fclean all
+
+NAME = fillit
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -Iincludes -Ilibft
+SOURCES = src/file_checker.c    \
+    src/parser.c                \
+    src/map.c                   \
+    src/solver.c                \
+    src/main.c
+OBJECTS = $(SOURCES:.c=.o)
+all: $(NAME)
+$(NAME): $(OBJECTS)
+    @ make -s -C libft
+    @ $(CC) -Llibft -lft -o $(NAME) $(OBJECTS)
+clean:
+    @ make -C libft clean
+    @ rm -f $(OBJECTS)
+fclean: clean
+    @ make -C libft fclean
+    @ rm -f $(NAME)
+re: fclean all
+.PHONY: all clean fclean re
+.SILENT: $(OBJECTS)

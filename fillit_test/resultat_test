@@ -1,0 +1,125 @@
+fillit_checker by agadhgad
+
+remove libft................................................... [ok]
+remove object.................................................. [ok]
+
+remove libft................................................... [ok]
+
+libft built.................................................... [ok]
+
+app built...................................................... [ok]
+--- begin of invalid test ---
+invalid test 0 : fail :/
+for the file error_0 (cat -e):
+	....$
+###$
+	..#.$
+	....$
+	$
+	..#.$
+	.###$
+	....$
+	....$
+	your output is:
+	AAA
+	.BA
+	BBB
+	invalid test 1 : ok
+	invalid test 2 : fail :/
+	for the file error_2 (cat -e):
+		....$
+		....$
+		....$
+####$
+		$
+		....$
+		....$
+		your output is:
+		AAAA
+		...
+		....
+		....
+		invalid test 3 : fail :/
+		for the file error_3 (cat -e):
+			....$
+			....$
+			..##$
+			..##$
+			$
+			..#.$
+			..#.$
+			.##.$
+			....$
+			$
+			your output is:
+			AAB
+			AAB.
+			.BB.
+			....
+			invalid test 4 : ok
+			invalid test 5 : ok
+			invalid test 6 : ok
+			invalid test 7 : ok
+			invalid test 8 : ok
+			invalid test 9 : ok
+			invalid test 10 : ok
+			invalid test 11 : ok
+			invalid test 12 : ok
+			invalid test 13 : ok
+			invalid test 14 : ok
+			invalid test 15 : ok
+			invalid test 16 : ok
+			invalid test 17 : fail :/
+			for the file error_17 (cat -e):
+				.#..$
+				.##.$
+				..#.$
+				....$
+				$
+				.#..$
+				.#..$
+				..#.$
+				..#.$
+				your output is:
+				A.B.
+				AAB.
+				.A.B
+				...B
+				invalid test 18 : ok
+				invalid test 19 : ok
+				invalid test 20 : ok
+				invalid test 21 : ok
+				invalid test 22 : ok
+				invalid test 23 : fail :/
+				for the file error_23 (cat -e):
+					your output is:
+					..
+					..
+					invalid test 24 : ok
+					invalid test 25 : ok
+					--- end of invalid test ---
+					invalid test failed, 21 / 26
+					--- begin of valid test ---
+					valid test 0 : ok
+					valid test 1 : ok
+					valid test 2 : ok
+					valid test 3 : ok
+					valid test 4 : ok
+					valid test 5 : ok
+					valid test 6 : ok
+					valid test 7 : ok
+					valid test 8 : ok
+					valid test 9 : ok
+					valid test 10 : ok
+					valid test 11 : ok
+					valid test 12 : ok
+					valid test 13 : ok
+					valid test 14 : ok
+					valid test 15 : ok
+					valid test 16 : ok
+					valid test 17 : ok
+					valid test 18 : ok
+					valid test 19 : ok
+					--- end of valid test ---
+					valid test succeed, 20 / 20
+					NOTE: 41 / 46

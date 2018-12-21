@@ -57,21 +57,16 @@ int		valid_line(char *line, int nbline, int *nbloc)
 
 	vline = 1;
 	vcar = 0;
-	if (!line && (nbline % 5 == 0 && line[0] != '\n'))
-		return (0);
-	if (nbline % 5 != 0 && ft_strlen(line) != 4)
+	if ((!line && (nbline % 5 == 0 && line[0] != '\n')) ||
+	(nbline % 5 != 0 && ft_strlen(line) != 4))
 		return (0);
 	while (line[vcar])
 	{
 		if (nbline % 5 != 0 && line[vcar] == '#')
 			(*nbloc)++;
-		if (nbline % 5 == 0 && line[vcar] != '\n')
-		{
-			vline = 0;
-			break ;
-		}
-		if (nbline % 5 != 0 && (vcar > 3 || (line[vcar] != '.' &&
-						line[vcar] != '#')))
+		if ((nbline % 5 == 0 && line[vcar] != '\n') ||
+		(nbline % 5 != 0 && (vcar > 3 || (line[vcar] != '.' &&
+						line[vcar] != '#'))))
 		{
 			vline = 0;
 			break ;
@@ -110,5 +105,5 @@ int *nbtetri, int nb_blocs)
 	}
 	close(fd);
 	*nbtetri = ((nbline > 1) ? *nbtetri += 1 : 0);
-	return (vld);
+	return (vld && (*nbtetri != 0 && ((nbline + 1) / (*nbtetri) % 5 == 0)));
 }
